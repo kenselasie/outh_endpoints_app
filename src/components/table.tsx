@@ -11,7 +11,7 @@ import {
   Spacer,
   Flex,
   Button,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import {
   Previous,
@@ -46,13 +46,13 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
   const normalStyles = {
     bg: "white",
     color: "black",
-    padding: '12px'
+    padding: "12px",
   };
 
   const activeStyles = {
     bg: "#4763E4",
     color: "white",
-    padding: '12px'
+    padding: "12px",
   };
 
   const handlePageChange = (page: number) => {
@@ -66,20 +66,20 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
 
   React.useEffect(() => {
     const offset = curPage * itemLimit;
-    const getList = (curPage: number, itemLimit:number) => {
+    const getList = (curPage: number, itemLimit: number) => {
       setCurItems(endpointData.slice(offset, offset + itemLimit));
     };
 
     getList(curPage, itemLimit);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [curPage, itemLimit, endpointData]);
 
   return (
     <>
-      <TableContainer display={'block'}>
-        <Table size={'sm'} variant="simple" className="table-tiny">
-          <Thead height={'60px'}>
-            <Tr padding={'100px'} borderRadius={100}>
+      <TableContainer display={"block"}>
+        <Table size={"sm"} variant="simple" className="table-tiny">
+          <Thead height={"60px"}>
+            <Tr padding={"100px"} borderRadius={100}>
               <Th>Name</Th>
               <Th>Endpoint</Th>
               <Th>Service</Th>
@@ -112,7 +112,7 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
         </Table>
       </TableContainer>
 
-      <Flex p={2}>
+      <Flex alignItems={"center"} justifyContent={"center"} p={2} mt={'20px'}>
         <Text>{endpointData.length} records</Text>
         <Spacer />
         <Paginator
