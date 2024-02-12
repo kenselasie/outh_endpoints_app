@@ -4,16 +4,16 @@ import { useRouter } from "next/navigation";
 import { useAppContext } from "@/components/providers/AppContextProvider";
 
 const ProtectedRoute = (Component: React.FC) => {
-  const { accessToken } = useAppContext();
-
+  
   const RequiresAuth: React.FC = (props: any) => {
+    const { accessToken } = useAppContext();
     const router = useRouter();
 
     React.useEffect(() => {
       if (!accessToken) {
         router.replace("/login");
       }
-    }, [router]);
+    }, [router, accessToken]);
 
     if (!accessToken) {
       <div>Loading....</div>;

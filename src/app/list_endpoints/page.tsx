@@ -6,7 +6,7 @@ import React from "react";
 import { Box, Center, Text, Heading } from "@chakra-ui/react";
 import "./list_endpoints.css";
 import SearchBar from "@/components/searchbar";
-// import isProtected from "@/components/requires/ProtectedRoute";
+import isProtected from "@/components/requires/ProtectedRoute";
 
 const Dashboard = () => {
   const { data, error, isLoading } = useGetEndpoints();
@@ -39,4 +39,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default isProtected(Dashboard);
