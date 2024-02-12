@@ -37,9 +37,11 @@ interface ITableData {
 }
 
 const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
-  const itemLimit = 50;
+  const itemLimit = 5;
   const [pagesQuantity, setPagesQuantity] = React.useState(0);
   const [curPage, setCurPage] = React.useState(0);
+
+  const [curItems, setCurItems] = React.useState<ITableData[]>([]);
 
   const normalStyles = {
     bg: "white",
@@ -61,6 +63,17 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
 
     setPagesQuantity(pagesTotal);
   }, [endpointData.length]);
+
+  React.useEffect(() => {
+    const offset = curPage * itemLimit;
+    const getList = (curPage: number, itemLimit:number) => {
+      setCurItems(endpointData.slice(offset, offset + itemLimit));
+    };
+
+    getList(curPage, itemLimit);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [curPage, itemLimit, endpointData]);
+
   return (
     <>
       <TableContainer display={'block'}>
@@ -76,7 +89,7 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {endpointData.map((data, key) => (
+            {curItems?.map((data, key) => (
               <Tr key={key}>
                 <Td>{data.name}</Td>
                 <Td>{data.endpoint}</Td>

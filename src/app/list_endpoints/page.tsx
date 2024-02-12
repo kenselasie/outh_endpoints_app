@@ -18,9 +18,9 @@ const Dashboard = () => {
     return <>Could not load endpoint data</>;
   }
   return (
-    <Box height={'100vh'}>
+    <Box height={'100vh'} bg={'#f4f4f4'}>
       {data && (
-        <Box bg={'#f4f4f4'}>
+        <Box >
           <Header />
           <Box bg="#fffff" borderRadius={20} paddingTop={50} paddingRight={200} paddingLeft={200}>
             <Text fontSize="32px" fontWeight={600} mb={5}>
