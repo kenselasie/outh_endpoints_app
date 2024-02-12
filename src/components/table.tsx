@@ -63,10 +63,10 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
   }, [endpointData.length]);
   return (
     <>
-      <TableContainer>
-        <Table borderRadius={40} size={'sm'} variant="simple">
-          <Thead>
-            <Tr>
+      <TableContainer display={'block'}>
+        <Table size={'sm'} variant="simple" className="table-tiny">
+          <Thead height={'60px'}>
+            <Tr padding={'100px'} borderRadius={100}>
               <Th>Name</Th>
               <Th>Endpoint</Th>
               <Th>Service</Th>
@@ -106,7 +106,7 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
           onPageChange={handlePageChange}
           pagesQuantity={pagesQuantity - 1}
           isDisabled={false}
-          border={"1px solid grey"}
+          border={"1px solid #f2f2f2"}
           borderRadius={14}
           marginLeft={10}
         >
