@@ -16,7 +16,7 @@ const Header = ({ props }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
   return (
-    <Box bg="#ffffff" p={3} left={0} right={0}>
+    <Box bg="#ffffff" p={3} left={0} right={0} height={'80px'}>
       <Flex
         as="header"
         w="100%"
@@ -39,8 +39,8 @@ const Header = ({ props }: any) => {
             justifyContent={"center"}
             mr={5}
           >
-            <Text>Theodore Winters</Text>
-            <Text>twinters@gmail.com</Text>
+            <Text fontWeight={600}>Theodore Winters</Text>
+            <Text marginTop={-2}>twinters@gmail.com</Text>
           </Flex>
           <Image className="roundedImage" src={UserImg} alt="rotate_logo" />
         </Flex>
