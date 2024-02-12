@@ -1,22 +1,19 @@
 "use client";
 import React from "react";
-import {
-  Box,
-  Stack,
-  Heading,
-  Flex,
-  Text,
-  Button,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Heading, Flex, Text } from "@chakra-ui/react";
 import RotateLogo from "@/assets/rotate_logo.png";
 import UserImg from "@/assets/user.png";
 import Image from "next/image";
+import { Image as ChakraImage} from '@chakra-ui/react'
+import { useVerifyUserQuery } from "@/data/use-verify.query";
+
 const Header = ({ props }: any) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleToggle = () => (isOpen ? onClose() : onOpen());
+  const { data: userData, isLoading } = useVerifyUserQuery();
+  if (isLoading) {
+    return <>Loading...</>;
+  }
   return (
-    <Box bg="#ffffff" p={3} left={0} right={0} height={'80px'}>
+    <Box bg="#ffffff" p={3} left={0} right={0} height={"80px"}>
       <Flex
         as="header"
         w="100%"
@@ -39,10 +36,15 @@ const Header = ({ props }: any) => {
             justifyContent={"center"}
             mr={5}
           >
-            <Text fontWeight={600}>Theodore Winters</Text>
-            <Text marginTop={-2}>twinters@gmail.com</Text>
+            <Text fontWeight={600}>{userData?.email}</Text>
+            <Text marginTop={-2}>{userData?.email}</Text>
           </Flex>
-          <Image className="roundedImage" src={UserImg} alt="rotate_logo" />
+          <ChakraImage
+            src={userData?.picture}
+            borderRadius='full'
+            boxSize='50px'
+            alt="rotate_logo"
+          />
         </Flex>
       </Flex>
     </Box>

@@ -1,3 +1,4 @@
 export const API_ENDPOINTS = {
-  GET_TOKEN: '/auth/oauth_token'
+  GET_TOKEN: '/auth/oauth_token',
+  VERIFY: '/auth/verify'
 };

@@ -29,7 +29,7 @@ const Dashboard = () => {
             <Box mb={10}>
               <SearchBar />
             </Box>
-            <Box bg={"white"}>
+            <Box bg={"white"} padding={50} borderRadius={20} height={'65vh'}>
               <TableComponent data={data} />
             </Box>
           </Box>

@@ -79,7 +79,12 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
       <TableContainer display={"block"}>
         <Table size={"sm"} variant="simple" className="table-tiny">
           <Thead height={"60px"}>
-            <Tr padding={"100px"} borderRadius={100}>
+            <Tr
+              fontSize={16}
+              fontStyle={""}
+              padding={"100px"}
+              borderRadius={100}
+            >
               <Th>Name</Th>
               <Th>Endpoint</Th>
               <Th>Service</Th>
@@ -97,14 +102,17 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
                 <Td>{data.rpc_queue}</Td>
                 <Td>{data.rest_action}</Td>
                 <Td>
-                  <Button
-                    bg={"white"}
-                    color={"#4763E4"}
-                    borderRadius={14}
-                    border={"1px solid #4763E4"}
-                  >
-                    {data.http_command}
-                  </Button>
+                  <Flex alignItems={"center"} justifyContent={"center"}>
+                    <Button
+                      bg={"white"}
+                      width={166}
+                      color={"#4763E4"}
+                      borderRadius={14}
+                      border={"1px solid #4763E4"}
+                    >
+                      {data.http_command}
+                    </Button>
+                  </Flex>
                 </Td>
               </Tr>
             ))}
@@ -112,7 +120,7 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
         </Table>
       </TableContainer>
 
-      <Flex alignItems={"center"} justifyContent={"center"} p={2} mt={'20px'}>
+      <Flex alignItems={"center"} justifyContent={"center"} p={2} mt={120}>
         <Text>{endpointData.length} records</Text>
         <Spacer />
         <Paginator
