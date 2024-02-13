@@ -22,7 +22,7 @@ interface ITableData {
 
 const Dashboard = () => {
   const { data, error, isLoading } = useGetEndpoints();
-  const [endpointData, setEndpointData] = React.useState<ITableData[]>();
+  const [searchString, setSearchString] = React.useState('');
   if (isLoading) {
     return <>Loading endpoints...</>;
   }
@@ -30,18 +30,9 @@ const Dashboard = () => {
     return <>Could not load endpoint data</>;
   }
 
-  const searchDataFnc = (searchString: string) => {
-    setEndpointData(data?.filter((element) => element.name.includes(searchString)))
-  };
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  React.useEffect(() => {
-    setEndpointData(data);
-  }, [data]);
-  
   return (
     <Box height={"100vh"} bg={"#f4f4f4"}>
-      {endpointData && (
+      {data && (
         <Box>
           <Header />
           <Box
@@ -56,11 +47,11 @@ const Dashboard = () => {
             </Text>
             <Box mb={10}>
               <SearchBar
-                searchItem={(search: string) => searchDataFnc(search)}
+                searchItem={(search: string) => setSearchString(search)}
               />
             </Box>
             <Box bg={"white"} padding={50} borderRadius={20} height={"65vh"}>
-              <TableComponent data={endpointData} />
+              <TableComponent search={searchString} data={data} />
             </Box>
           </Box>
         </Box>

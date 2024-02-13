@@ -19,7 +19,6 @@ import {
   PageGroup,
   Page,
   Next,
-  generatePages,
 } from "chakra-paginator";
 import { CgChevronLeft, CgChevronRight } from "react-icons/cg";
 
@@ -36,9 +35,10 @@ interface ITableData {
   };
 }
 
-const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
+const TableComponent = ({ data, search }: { data: ITableData[], search: string }) => {
   const itemLimit = 5;
   const [pagesQuantity, setPagesQuantity] = React.useState(0);
+  const [endpointData, setEndpointData] = React.useState(data);
   const [curPage, setCurPage] = React.useState(0);
 
   const [curItems, setCurItems] = React.useState<ITableData[]>([]);
@@ -58,6 +58,34 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
   const handlePageChange = (page: number) => {
     setCurPage(page);
   };
+
+  const generatePages = (totalPages: number) => {
+    const pages = [];
+
+    // Calculate the starting and ending page numbers
+    let startPage = Math.max(1, curPage - Math.floor(itemLimit / 2));
+    let endPage = startPage + itemLimit - 1;
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - itemLimit + 1);
+    }
+   
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
+ 
+
+
+
+  React.useEffect(() => {
+    setEndpointData(data?.filter((element) => element.name.includes(search)))
+  }, [data, search])
+
   React.useEffect(() => {
     const pagesTotal = Math.ceil(endpointData.length / itemLimit);
 
@@ -138,7 +166,7 @@ const TableComponent = ({ data: endpointData }: { data: ITableData[] }) => {
             {generatePages(pagesQuantity)?.map((page) => (
               <Page
                 key={`paginator_page_${page}`}
-                page={page}
+                page={page as number - 1}
                 normalStyles={normalStyles}
                 activeStyles={activeStyles}
               />

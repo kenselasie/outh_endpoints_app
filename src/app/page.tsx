@@ -34,5 +34,4 @@ export default function Home() {
     return router.push("/list_endpoints");
   }
 
-  return;
 }
