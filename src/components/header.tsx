@@ -2,9 +2,8 @@
 import React from "react";
 import { Box, Heading, Flex, Text } from "@chakra-ui/react";
 import RotateLogo from "@/assets/rotate_logo.png";
-import UserImg from "@/assets/user.png";
 import Image from "next/image";
-import { Image as ChakraImage} from '@chakra-ui/react'
+import { Image as ChakraImage } from "@chakra-ui/react";
 import { useVerifyUserQuery } from "@/data/use-verify.query";
 
 const Header = ({ props }: any) => {
@@ -41,8 +40,8 @@ const Header = ({ props }: any) => {
           </Flex>
           <ChakraImage
             src={userData?.picture}
-            borderRadius='full'
-            boxSize='50px'
+            borderRadius="full"
+            boxSize="50px"
             alt="rotate_logo"
           />
         </Flex>
